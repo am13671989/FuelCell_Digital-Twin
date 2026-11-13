@@ -1,0 +1,53 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# OpenModelica simulation and build output
+*_res.csv
+*.mat
+*.exe
+*.o
+*.c
+*_init.xml
+*_info.json
+*.makefile
+*.fmu
+
+# Project data
+/data/*
+!/data/README.md
+!/data/public/
+
+# JavaScript dependencies and build output
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local runtime files
+*.log
+*.sqlite
+*.sqlite3
+
+# Operating system files
+.DS_Store
+Thumbs.db
