@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-multipart
+celery[redis]
+redis
+numpy
+scipy
+pandas
+emcee
+fmpy
+dash
+plotly
+requests
