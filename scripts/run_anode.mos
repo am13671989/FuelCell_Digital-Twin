@@ -1,0 +1,5 @@
+// From the repository root: omc scripts/run_anode.mos
+loadFile("modelica/FCDT/package.mo"); getErrorString();
+checkModel(FCDT.Systems.FullSystem); getErrorString();
+simulate(FCDT.Tests.FullLoadStepTest, stopTime=300, numberOfIntervals=3000, outputFormat="csv", fileNamePrefix="FullLoadStepTest"); getErrorString();
+simulate(FCDT.Tests.FullAnodeStarvationTest, stopTime=200, numberOfIntervals=2000, outputFormat="csv", fileNamePrefix="FullAnodeStarvationTest"); getErrorString();

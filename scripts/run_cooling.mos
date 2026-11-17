@@ -1,0 +1,8 @@
+// From the repository root: omc scripts/run_cooling.mos
+loadFile("modelica/FCDT/package.mo"); getErrorString();
+checkModel(FCDT.Cooling.CoolingLoop); getErrorString();
+checkModel(FCDT.Systems.FullSystemCool); getErrorString();
+simulate(FCDT.Tests.CoolingWarmupTest, stopTime=700, numberOfIntervals=1400, outputFormat="csv", fileNamePrefix="CoolingWarmupTest"); getErrorString();
+simulate(FCDT.Tests.CoolingIonTest, stopTime=28800, numberOfIntervals=480, outputFormat="csv", fileNamePrefix="CoolingIonTest"); getErrorString();
+simulate(FCDT.Tests.CoolingIonNoFilterTest, stopTime=28800, numberOfIntervals=480, outputFormat="csv", fileNamePrefix="CoolingIonNoFilterTest"); getErrorString();
+simulate(FCDT.Tests.FullCoolLoadStepTest, stopTime=500, numberOfIntervals=5000, outputFormat="csv", fileNamePrefix="FullCoolLoadStepTest"); getErrorString();

@@ -1,0 +1,4 @@
+loadFile("modelica/FCDT/package.mo"); getErrorString();
+checkModel(FCDT.Air.AirPathChannelSystem); getErrorString();
+simulate(FCDT.Tests.ChannelLoadStepTest, stopTime=200, numberOfIntervals=4000, outputFormat="csv", fileNamePrefix="ChannelLoadStepTest"); getErrorString();
+simulate(FCDT.Tests.ChannelStarvationTest, stopTime=140, numberOfIntervals=2800, outputFormat="csv", fileNamePrefix="ChannelStarvationTest"); getErrorString();

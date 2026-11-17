@@ -1,0 +1,14 @@
+// From the repository root: omc scripts/run_all.mos
+loadFile("modelica/FCDT/package.mo"); getErrorString();
+simulate(FCDT.Tests.StackDynamicTest, stopTime=300, outputFormat="csv", fileNamePrefix="StackDynamicTest"); getErrorString();
+simulate(FCDT.Tests.StackVoltageTest, stopTime=10, outputFormat="csv", fileNamePrefix="StackVoltageTest"); getErrorString();
+simulate(FCDT.Tests.AirPathSystemTest, stopTime=200, numberOfIntervals=4000, outputFormat="csv", fileNamePrefix="AirPathSystemTest"); getErrorString();
+simulate(FCDT.Tests.ChannelLoadStepTest, stopTime=200, numberOfIntervals=4000, outputFormat="csv", fileNamePrefix="ChannelLoadStepTest"); getErrorString();
+simulate(FCDT.Tests.ChannelStarvationTest, stopTime=140, numberOfIntervals=2800, outputFormat="csv", fileNamePrefix="ChannelStarvationTest"); getErrorString();
+simulate(FCDT.Tests.FullLoadStepTest, stopTime=300, numberOfIntervals=3000, outputFormat="csv", fileNamePrefix="FullLoadStepTest"); getErrorString();
+simulate(FCDT.Tests.FullAnodeStarvationTest, stopTime=200, numberOfIntervals=2000, outputFormat="csv", fileNamePrefix="FullAnodeStarvationTest"); getErrorString();
+simulate(FCDT.Tests.CoolingWarmupTest, stopTime=700, numberOfIntervals=1400, outputFormat="csv", fileNamePrefix="CoolingWarmupTest"); getErrorString();
+simulate(FCDT.Tests.CoolingIonTest, stopTime=28800, numberOfIntervals=480, outputFormat="csv", fileNamePrefix="CoolingIonTest"); getErrorString();
+simulate(FCDT.Tests.CoolingIonNoFilterTest, stopTime=28800, numberOfIntervals=480, outputFormat="csv", fileNamePrefix="CoolingIonNoFilterTest"); getErrorString();
+simulate(FCDT.Tests.FullCoolLoadStepTest, stopTime=500, numberOfIntervals=5000, outputFormat="csv", fileNamePrefix="FullCoolLoadStepTest"); getErrorString();
+buildModelFMU(FCDT.Stack.StackDynamicFMU, version="2.0", fmuType="cs"); getErrorString();
