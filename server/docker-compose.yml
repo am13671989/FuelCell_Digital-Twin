@@ -1,3 +1,5 @@
+# Project name is fixed so this stack never collides with other Docker projects on the server.
+name: fcdt
 x-app: &app
   image: fcdt-server
   build:
@@ -12,6 +14,7 @@ x-app: &app
 services:
   redis:
     image: redis:7
+    restart: unless-stopped
   fmu-builder:
     <<: *app
     command: ["sh", "/build_fmu.sh"]
@@ -19,18 +22,19 @@ services:
   api:
     <<: *app
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-    ports: ["8000:8000"]
+    # no published port: only the dashboard (same Docker network) talks to the API
     depends_on: [redis]
     restart: unless-stopped
   worker:
     <<: *app
-    command: ["celery", "-A", "app.tasks", "worker", "--loglevel=info"]
+    command: ["celery", "-A", "app.tasks", "worker", "--loglevel=info", "--concurrency=2"]
     depends_on: [redis]
     restart: unless-stopped
   dashboard:
     <<: *app
     command: ["python", "-m", "app.dashboard"]
-    ports: ["8050:8050"]
+    # DASH_BIND=127.0.0.1 if you put an existing reverse proxy in front; DASH_PORT = free host port
+    ports: ["${DASH_BIND:-0.0.0.0}:${DASH_PORT:-8050}:8050"]
     depends_on: [api]
     restart: unless-stopped
 volumes:
